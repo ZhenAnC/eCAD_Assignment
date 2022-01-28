@@ -8,7 +8,7 @@ $content2 = "<li class='nav-item'>
 		     <a class='nav-link' href='login.php'>Login</a></li>";
 ?>
 
-<-- Display a navbar which is visible before or after collapsing -->
+<!-- Display a navbar which is visible before or after collapsing -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <!-- Dynamic Text Display -->
     <span class="navbar-text ml-md-2"
@@ -23,7 +23,7 @@ $content2 = "<li class='nav-item'>
 </nav>
 
 
-<-- Define a collapsible navbar -->
+<!-- Define a collapsible navbar -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <!-- Collapsible part of navbar -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
