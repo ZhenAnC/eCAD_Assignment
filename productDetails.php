@@ -17,7 +17,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
 
-// To Do 1:  Display Product information. Starting ....
+// Display Product information. Starting ....
 while ($row=$result->fetch_array()){
     //Display Page Header -
     //Product's name is read from the "ProductTitle" column of "product" table
@@ -55,22 +55,42 @@ while ($row=$result->fetch_array()){
 
     //Right column - display the product's price
     $formattedPrice = number_format($row["Price"],2);
-    echo "Price:<span style='font-weight:bold; color:red;'>
+    
+    if("$row[OfferedPrice]" == NULL){
+        echo "Price:<span style='font-weight:bold; color:red;'>
             S$ $formattedPrice</span>";
+    }
+    else{
+        $formattedOfferedPrice = number_format($row["OfferedPrice"],2);
+        echo "Price: <del><span>S$ $formattedPrice</del></span>
+        <span style='font-weight:bold; font-size:15px; color:red;'>S$ $formattedOfferedPrice </span>";
+    }
+    
 }
-// To Do 1:  Ending ....
 
-// To Do 2:  Create a Form for adding the product to shopping cart. Starting ....
-echo "<form action='cartFunctions.php' method='post'>";
-echo "<input type='hidden' name='action' value='add' />";
-echo "<input type='hidden' name='product_id' value='$pid' />";
-echo "Quantity: <input type='number' name='quantity' value='1'
-        min='1' max='10' style='width:40px' required />";
-echo "<button type='submit'>Add to Cart</button>";
-echo "</form>";
+$qry = "SELECT Quantity from product where ProductID=?";
+$stmt = $conn->prepare($qry);
+$stmt->bind_param("i", $pid); 	// "i" - integer 
+$stmt->execute();
+$result3 = $stmt->get_result();
+$stmt->close();
+$row = $result3->fetch_row();
+if($row[0] > 0){
+        // Create a Form for adding the product to shopping cart. Starting ....
+        echo "<form action='cartFunctions.php' method='post'>";
+        echo "<input type='hidden' name='action' value='add' />";
+        echo "<input type='hidden' name='product_id' value='$pid' />";
+        echo "Quantity: <input type='number' name='quantity' value='1'
+                min='1' max='10' style='width:40px' required />";
+        echo "<button type='submit'>Add to Cart</button>";
+        echo "</form>";
+}
+else{
+        echo "<br/><span style='font-weight:bold; color:red; font-size:20px;'>Out of Stock";
+}
+
 echo "</div>"; //End of right column
 echo "</div>"; //End of row
-// To Do 2:  Ending ....
 
 $conn->close(); // Close database connnection
 echo "</div>"; // End of container
