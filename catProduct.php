@@ -19,7 +19,7 @@ include_once("mysql_conn.php");
 // To Do:  Starting ....
 $cid=$_GET["cid"]; //Read Category ID from query string
 //Form SQL to retrieve list of products associated to the Category ID
-$qry="SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity
+$qry="SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity, p.Offered
 		FROM CatProduct cp INNER JOIN product p ON cp.ProductID=p.ProductID
 		WHERE cp.CategoryID=?
 		ORDER BY p.ProductTitle ASC";
@@ -36,12 +36,21 @@ while ($row=$result->fetch_array()){
 	//Left column - display a text link showing the product's name,
 	//				display the selling price in red in a new paragraph
 	$product="productDetails.php?pid=$row[ProductID]";
-	$formattedPrice=number_format($row["Price"],2);
 	echo "<div class='col-8'>"; //67% of row width
 	echo "<p><a href=$product>$row[ProductTitle]</a></p>";
-	echo "Price:<span style='font-weight: bold; color: red;'>
-			S$ $formattedPrice</span>";
+	$formattedPrice=number_format($row["Price"],2);
+	
+	if("$row[Offered]" == "0"){
+		echo "Price:<span style='font-weight: bold; color: red;'>
+		S$ $formattedPrice</span>";
+	}
+	else{
+		echo "Original Price:<span style='font-weight: bold; color: red;'>
+		S$ $formattedPrice</span>";
+		echo "<br/><span style='font-weight:bold; color:red; font-size:20px;'>On Offer";
+	}
 	echo "</div>";
+	
 
 	//Right column - display the product's image
 	$img="./Images/products/$row[ProductImage]";
