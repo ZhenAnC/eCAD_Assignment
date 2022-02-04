@@ -24,7 +24,7 @@ include("header.php"); // Include the Page Layout header
     </div>  <!-- End of 2nd row -->
     <div class="form-group row">
     <div class="col-sm-9">
-    <span>Enter "Sweetness" or "Price" to sort all products by Sweetness/Price!</span>
+    <span style="font-style: oblique;">Enter "Sweetness" or "Price" to sort all products by Sweetness/Price!</span>
         </div>
     </div>  
 </form>
@@ -40,6 +40,7 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
     echo "<p><b>Search result for $_GET[keywords]: </b></p>";
     echo "</div>";
     echo "</div>";
+    $count = 0;
     //price
     if(str_contains($_GET["keywords"], "Price") || str_contains($_GET["keywords"], "price")){
         $qry="SELECT ProductID, ProductTitle, Price FROM product
@@ -49,12 +50,13 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
         $result=$stmt->get_result();
         $stmt->close();
         $count = 1;
+        echo "<b><span>Products</span>";
+        echo "<span style='float:right'>Price (S$)</span></b>";
         while ($row=$result->fetch_array()){
-            echo "<div class='col-sm-9' style='padding:5px'>";
+            
+            echo "<div style='padding:5px'>";
             $product="productDetails.php?pid=$row[ProductID]";
-            echo "<div class='col-sm-9'>";
-            echo "<p>";
-            echo "<a href=$product>$row[ProductTitle]</a>";
+            echo "<div><p><a href=$product>$row[ProductTitle]</a>";
             echo "<span style='float:right'>$row[Price]</span>";
             echo "</p>";
             echo "</div>";
@@ -70,9 +72,12 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
     $stmt->execute();
     $result=$stmt->get_result();
     $stmt->close();
-    $count = 0;
     while ($row=$result->fetch_array()){
-        $count = 1;
+        $count += 1;
+        if($count == 1){
+            echo "<b><span>Products</span>";
+            echo "<span style='float:right'>Sweetness Level (out of 5)</span></b>";
+        }
         $qry = "SELECT ProductID, ProductTitle FROM product
                 WHERE ProductID LIKE ?";
         $stmt=$conn->prepare($qry);
@@ -81,14 +86,10 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
         $result2=$stmt->get_result();
         $stmt->close();
         while ($row2=$result2->fetch_array()){
-            echo "<div class='col-sm-9' style='padding:5px'>";
+            echo "<div style='padding:5px'>";
             $product="productDetails.php?pid=$row2[ProductID]";
-            echo "<div class='col-sm-9'>";
-            echo "<p>";
-            echo "<a href=$product>$row2[ProductTitle]</a>";
-            echo "<span style='float:right'>$row[SpecVal]</span>";
-            echo "</p>";
-            echo "</div>";
+            echo "<div><p><a href=$product>$row2[ProductTitle]</a>";
+            echo "<span style='float:right'>$row[SpecVal]</span></p></div>";
             echo "</div>";
         } 
     }
@@ -107,6 +108,10 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
         $stmt->close();
         
         while ($row3=$result3->fetch_array()){
+            if ($count == 0){
+                echo "<b><span>Products</span></b>";
+            }
+            $count += 1;
             echo "<div class='col-sm-9' style='padding:5px'>";
             $product="productDetails.php?pid=$row3[ProductID]";
             echo "<div class='col-8'>";
@@ -115,8 +120,10 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
             echo "</div>";
         }  
     }
-    
-    
+    //no results found
+    if ($count == 0){
+        echo "<b><span style='color:red';>No results found!</span></b>";
+    }
     $conn->close();
 }
 
