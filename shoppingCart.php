@@ -1,3 +1,6 @@
+
+
+
 <?php 
 // Include the code that contains shopping cart's functions.
 // Current session is detected in "cartFunctions.php, hence need not start session here.
@@ -91,14 +94,27 @@ if (isset($_SESSION["Cart"])) {
 				
 		// To Do 4 (Practical 4): 
 		// Display the subtotal at the end of the shopping cart
-		echo "<p style='text-align:right; font-size:20px'>
-				Subtotal=S$". number_format($subTotal,2);
+	
+		echo "<p style='text-align:right; padding-right:50px; font-size:20px'>
+				Subtotal=S$ ". number_format($subTotal,2);
+
 		$_SESSION["SubTotal"]=round($subTotal,2);	
 		// To Do 7 (Practical 5):
 		// Add PayPal Checkout button on the shopping cart page
 		echo "<form method='post' action='checkoutProcess.php'>";
+		echo"<p style='text-align:right; padding-right:50px'>";
+		echo"<input type='radio' name='Delivery' id='delivery_normal' value='2' checked />";
+		echo"<label for='delivery_normal' style='font-size:15px'>Normal delivery within 1 day - $2</label>";
+		echo"</br>";
+		echo"<input type='radio' name='Delivery' id='delivery_express' value='5' />";
+		echo"<label for='delivery_express' style='font-size:15px'>Express delivery within 2 hours - $5</label>";
+		echo"</br>";
 		echo "<input type='image' style='float:right;'
 				src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'>";
+
+		echo"</br>";
+		echo"</br>";
+		echo"*total price will be updated during checkout";
 		echo "</form></p>";		
 	}
 	else {
