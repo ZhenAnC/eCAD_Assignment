@@ -1,9 +1,12 @@
 body {
-    font-family : Arial;
+    font-family : 'Comic Neue';
     font-size : 14px;
 }
-
+nav{
+	background-color: #E0C5C5;
+}
 .page-title {
+	color:#2F1D1D;
     font-size:24px; 
 	font-weight:bold;
 }

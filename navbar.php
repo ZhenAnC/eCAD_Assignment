@@ -1,3 +1,7 @@
+<html>
+<link rel="stylesheet" href="css/navbar.css">
+
+    </html>
 <?php 
 //Display guest welcome message, Login and Registration links
 //when shopper has yet to login,
@@ -9,10 +13,10 @@ $content2 = "<li class='nav-item'>
 ?>
 
 <!-- Display a navbar which is visible before or after collapsing -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md">
     <!-- Dynamic Text Display -->
     <span class="navbar-text ml-md-2"
-          style="color:#F7BE81; max-width:80%;">
+          style="font-weight:700; font-size:20px; max-width:80%;">
         <?php echo $content1; ?>
     </span>
     <!-- Toggler/Collapsible Button -->
@@ -24,7 +28,7 @@ $content2 = "<li class='nav-item'>
 
 
 <!-- Define a collapsible navbar -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md">
     <!-- Collapsible part of navbar -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <!-- Leftjustified menu items -->
