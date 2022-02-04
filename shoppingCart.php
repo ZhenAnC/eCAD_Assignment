@@ -54,16 +54,6 @@ if (isset($_SESSION["Cart"])) {
 			echo "<form action='cartFunctions.php' method='post'>";
 			$i = $row["Quantity"];
 			echo "<input type='number' name='quantity' onChange='this.form.submit()' value='$i' />";
-			//echo "<select name='quantity'onChange='this.form.submit()'>";
-			//for ($i = 1; $i <= 10; $i++) { // To populate drop-down list from 1 to 10
-			//	if ($i == $row["Quantity"])
-			//		// Select drop-down list item with value same as the quantity of purchase
-			//		$selected = "selected";
-			//	else
-			//		$selected = ""; // No specific item is selected
-			//	echo "<option value='$i' $selected>$i</option>";
-			//}	
-			//echo "</select>";
 			echo "<input type='hidden' name='action' value='update' />";
 			echo "<input type='hidden' name='product_id' value='$row[ProductID]' />";
 			echo "</form>";
@@ -90,7 +80,11 @@ if (isset($_SESSION["Cart"])) {
 		echo "</tbody>"; // End of table's body section
 		echo "</table>"; // End of table
 		echo "</div>"; // End of Bootstrap responsive table
-				
+		
+		// Display the subtotal at the end of the shopping cart
+		echo "<p style='text-align:right; font-size:20px'>
+				Number of Items in Cart = ". $_SESSION["NumCartItem"];
+		
 		// Display the subtotal at the end of the shopping cart
 		echo "<p style='text-align:right; font-size:20px'>
 				Subtotal = S$". number_format($subTotal, 2);
