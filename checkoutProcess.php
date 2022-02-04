@@ -56,21 +56,29 @@ if($_POST) //Post Data received from Shopping cart page.
  //   $_SESSION["ShipCharge"] = 1.11;
     if (isset($_POST['Delivery']))
     {
-        $radioval = $_POST['Delivery'];
-        if ($radioval == "2")
-        {
-            $_SESSION["ShipCharge"] = 2.00;
-        }
-        else
-        {
-            $_SESSION["ShipCharge"] = 5.00;
-        }
+		
+		$radioval = $_POST['Delivery'];
+		if ($radioval == "2")
+		{
+
+			if($_SESSION["SubTotal"] > 50)
+			{
+				$_SESSION["ShipCharge"] = 0;
+			}
+			else
+			{
+				$_SESSION["ShipCharge"] = 2.00;
+			}
+			
+		}
+		else
+		{
+			
+			$_SESSION["ShipCharge"] = 5.00;
+		}
+       
     }
-    else
-    {
-        $_SESSION["ShipCharge"] = 1.11;
-    }
-    
+
   
 	#$_SESSION["ShipCharge"] = $_POST['Delivery'];
 
