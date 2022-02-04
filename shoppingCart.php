@@ -92,14 +92,13 @@ if (isset($_SESSION["Cart"])) {
 		echo "</div>"; // End of Bootstrap responsive table
 				
 		// Display the subtotal at the end of the shopping cart
-			echo "<p style='text-align:right; font-size:20px'>
-					Subtotal = S$". number_format($subTotal, 2);
-			$_SESSION["SubTotal"] = round($subTotal, 2);
-		// Add PayPal Checkout button on the shopping cart page
-		echo "<form method='post' action='checkoutProcess.php'>";
+		echo "<p style='text-align:right; font-size:20px'>
+				Subtotal = S$". number_format($subTotal, 2);
+		$_SESSION["SubTotal"] = round($subTotal, 2);
 		
 		echo"<container style='text-align:right; align-content:flex-start; padding-right:50px'>";
-		echo"<text style='font-size:30px;'>Choose delivery type<text>";
+		echo"</br>";
+		echo"<text style='font-size:20px;'>Choose delivery type<text>";
 		echo"</br>";
 		echo"<input type='radio' name='Delivery' id='delivery_normal' value='2' checked /> ";
 		echo"<label for='delivery_normal' style='text-align:left; font-size:15px; margin-left: 5px; margin-bottom: -200px;'><strong>$2</strong> (Normal delivery within 1 day) </label> ";
@@ -111,8 +110,6 @@ if (isset($_SESSION["Cart"])) {
 		}
 		else{ $shipping = '2';}
 		echo"</br>";
-		echo"Shipping Cost = ";
-		echo"<span class='r-text'> $shipping</span>";
 		// if ($shipping == 2)
 		// {
 		// 	$subTotal+=2;
@@ -121,9 +118,11 @@ if (isset($_SESSION["Cart"])) {
 		// {
 		// 	$subTotal+=5;
 		// }
-		#echo"$subTotal";
-		echo "<p style='text-align:right;padding-right:50px; font-size:20px'>
-		Subtotal=S$ ". number_format($subTotal,2); echo "</p>";
+		//echo"$subTotal";
+		//echo "<p style='text-align:right;padding-right:50px; font-size:20px'>
+		//Subtotal=S$ ". number_format($subTotal,2); echo "</p>";
+		// Add PayPal Checkout button on the shopping cart page
+		echo "<form method='post' action='checkoutProcess.php'>";
 		echo "<input type='image' style='float:right; padding-right:50px; '
 		src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'>";
 		echo"</container>";	

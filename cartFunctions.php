@@ -60,14 +60,26 @@ function addItem() {
 		$stmt->close();
 	}
 	else { // Selected product has yet to be added to shopping cart
-		$qry = "INSERT INTO shopcartitem(ShopCartID, ProductID, Price, Name, Quantity)
+		if (isset ($_SESSION["offerPrice"])) {
+			$qry = "INSERT INTO shopcartitem(ShopCartID, ProductID, Price, Name, Quantity)
+				SELECT ?, ?, OfferedPrice, ProductTitle, ? FROM Product WHERE ProductID=?";
+			$stmt = $conn->prepare($qry);
+			// "iiii" - 4 integers
+			$stmt->bind_param("iiii", $_SESSION["Cart"], $pid, $quantity, $pid);
+			$stmt->execute();
+			$stmt->close();
+			$addNewItem = 1;
+		}
+		else {
+			$qry = "INSERT INTO shopcartitem(ShopCartID, ProductID, Price, Name, Quantity)
 				SELECT ?, ?, Price, ProductTitle, ? FROM Product WHERE ProductID=?";
-		$stmt = $conn->prepare($qry);
-		// "iiii" - 4 integers
-		$stmt->bind_param("iiii", $_SESSION["Cart"], $pid, $quantity, $pid);
-		$stmt->execute();
-		$stmt->close();
-		$addNewItem = 1;
+			$stmt = $conn->prepare($qry);
+			// "iiii" - 4 integers
+			$stmt->bind_param("iiii", $_SESSION["Cart"], $pid, $quantity, $pid);
+			$stmt->execute();
+			$stmt->close();
+			$addNewItem = 1;
+		}
 	}
 	$conn->close();
 	// Update session variable used for counting number of items in the shopping cart.

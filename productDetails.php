@@ -64,6 +64,7 @@ while ($row=$result->fetch_array()){
         $formattedOfferedPrice = number_format($row["OfferedPrice"],2);
         echo "Price: <del><span>S$ $formattedPrice</del></span>
         <span style='font-weight:bold; font-size:15px; color:red;'>S$ $formattedOfferedPrice </span>";
+        $_SESSION["offerPrice"] = $row["OfferedPrice"];
     }
     
 }
