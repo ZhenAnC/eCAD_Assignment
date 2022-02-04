@@ -59,6 +59,7 @@ while ($row=$result->fetch_array()){
     if("$row[OfferedPrice]" == NULL){
         echo "Price:<span style='font-weight:bold; color:red;'>
             S$ $formattedPrice</span>";
+        $_SESSION["offerPrice"] = NULL;
     }
     else{
         $formattedOfferedPrice = number_format($row["OfferedPrice"],2);
