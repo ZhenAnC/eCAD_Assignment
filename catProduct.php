@@ -46,7 +46,7 @@ while ($row=$result->fetch_array()){
 	}
 	else{
 		echo "Price:<del><span> S$ $formattedPrice</span></del>";
-		echo "<span style='font-weight:bold; font-size:20px; color:red;'> NOW S$ $formattedOfferedPrice !!</span>";
+		echo "<span style='font-weight:bold; font-size:20px; color:red;'> ON OFFER: S$ $formattedOfferedPrice </span>";
 	}
 	echo "</div>";
 	
