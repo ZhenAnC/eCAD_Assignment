@@ -3,7 +3,7 @@ session_start(); // Detect the current session
 include("header.php"); // Include the Page Layout header
 ?>
 <!-- Create a container, 90% width of viewport -->
-<div style='width:80%; margin:auto;'>
+<div style='width:90%; margin:auto;'>
 
 <?php 
 $pid=$_GET["pid"]; // Read Product ID from query string
@@ -22,20 +22,20 @@ while ($row=$result->fetch_array()){
     //Display Page Header -
     //Product's name is read from the "ProductTitle" column of "product" table
     echo "<div class='row'>";
-    echo "<div class='col-6' style='padding:5px'>";
-    echo "<span class='page-title'>$row[ProductTitle]</span>";
+    echo "<div class='col-sm-12' style='padding:5px'>";
+    echo "<span class='page-title'>$row[ProductTitle]</span>"; 
     echo "</div>";
     echo "</div>";
 
-    echo "<div class='row'>"; //Start a new row
     //left column - display the product's image
+    echo "<div class='row'>";
     $img="./Images/products/$row[ProductImage]";
-    echo "<div class='col-sm-3' style='vertical-align:top; padding:5px'>";
-    echo "<p><img src=$img /></p>";
+    echo "<div class='col-sm-3' style='padding:5px; display: block;'>";
+    echo "<span><img src=$img /></span>";
     echo "</div>";
 
     //right column - display the product's description
-    echo "<div class='col-sm-5' style='padding:5px'>";
+    echo "<div class='col-sm-9' style='padding:5px; display:block;'>";
     echo "<p>$row[ProductDesc]</p>";
 
     //right column - display the product's specification
@@ -83,7 +83,7 @@ if($row[0] > 0){
         echo "<input type='hidden' name='product_id' value='$pid' />";
         echo "Quantity: <input type='number' name='quantity' value='1'
                 min='1' max='10' style='width:40px' required />";
-        echo "<button type='submit'>Add to Cart</button>";
+        echo "<button type='submit' style='background-color: #E0C5C5; color: #2F1D1D;'>Add to Cart</button>";
         echo "</form>";
 }
 else{
