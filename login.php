@@ -10,17 +10,29 @@ include("header.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 </head>
 
+<script type="text/javascript">
+function validateForm()
+{
+    if (document.register.password.value != document.register.password2.value){
+        alert("Passwords not matched!");
+        return false; // cancel submission
+    }
+    return true;  // No error found
+}
+</script>
 
 <div class="login_container" id="container">
 	<div class="form-container sign-up-container">
-		<form >
+		<form name="register" action="addMember.php" method="post"
+		onsubmit="return validateForm()">
 			<h1>Create Account</h1>
             <br />
 
 			<span>Use your email for registration</span>
-			<input type="text" placeholder="Name" required/>
-			<input type="email" placeholder="Email" required/>
-			<input type="password" placeholder="Password" required/>
+			<input class="form-control" name="name" type="text" placeholder="Name" required/>
+			<input class="form-control" name="email" type="email" placeholder="Email" required/>
+			<input class="form-control"  name="password"type="password" placeholder="Password" required/>
+			<input class="form-control"  name="password2" type="password" placeholder="Retype password" required/>
 			<button>Sign Up</button>
 		</form>
 	</div>
