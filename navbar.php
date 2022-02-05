@@ -10,6 +10,17 @@ $content2 = "<li class='nav-item'>
 		     <a class='nav-link' href='register.php'>Sign Up</a></li>
 			 <li class='nav-item'>
 		     <a class='nav-link' href='login.php'>Login</a></li>";
+
+if(isset($_SESSION["ShopperName"])) { 
+    //Display a greeting message after shopper has logged in.
+    $content1 = "Welcome <b>$_SESSION[ShopperName]</b>";
+	
+	//To Do 2 (Practical 4) - 
+    //Display number of item in cart
+	if (isset($_SESSION["NumCartItem"])) {
+        $content1 .= ", $_SESSION[NumCartItem] item(s) in shopping cart";
+    }
+}
 ?>
 
 <!-- Display a navbar which is visible before or after collapsing -->
