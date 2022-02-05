@@ -13,6 +13,7 @@ include("header.php");
 <script type="text/javascript">
 function validateForm()
 {
+	// Check if passwords match
     if (document.register.password.value != document.register.password2.value){
         alert("Passwords not matched!");
         return false; // cancel submission
