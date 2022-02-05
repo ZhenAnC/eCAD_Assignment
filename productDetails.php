@@ -23,17 +23,22 @@ while ($row=$result->fetch_array()){
     //Product's name is read from the "ProductTitle" column of "product" table
     echo "<div class='row'>";
     echo "<div class='col-sm-12' style='padding:5px'>";
-    echo "<span class='page-title'>$row[ProductTitle]</span>";
+    echo "<span class='page-title'>$row[ProductTitle]</span>"; 
     echo "</div>";
     echo "</div>";
 
-    echo "<div class='row'>"; //Start a new row
+    //left column - display the product's image
+    echo "<div class='row'>";
+    $img="./Images/products/$row[ProductImage]";
+    echo "<div class='col-sm-3' style='padding:5px; display: block;'>";
+    echo "<span><img src=$img /></span>";
+    echo "</div>";
 
-    //Left column - display the product's description
-    echo "<div class='col-sm-9' style='padding:5px'>";
+    //right column - display the product's description
+    echo "<div class='col-sm-9' style='padding:5px; display:block;'>";
     echo "<p>$row[ProductDesc]</p>";
 
-    //Left column - display the product's specification
+    //right column - display the product's specification
     $qry="SELECT s.SpecName, ps.SpecVal from productspec ps
             INNER JOIN specification s ON ps.SpecID=s.SpecID
             WHERE ps.ProductID=?
@@ -45,14 +50,8 @@ while ($row=$result->fetch_array()){
     $stmt->close();
     while ($row2 = $result2->fetch_array()){
         echo $row2["SpecName"].": ".$row2["SpecVal"]."<br />";
-    }        
-    echo "</div>"; //End of left column
-
-    //Right column - display the product's image
-    $img="./Images/products/$row[ProductImage]";
-    echo "<div class='col-sm-3' style='vertical-align:top; padding:5px'>";
-    echo "<p><img src=$img /></p>";
-
+    }
+    echo "<br/><br/><br/>";
     //Right column - display the product's price
     $formattedPrice = number_format($row["Price"],2);
     
@@ -64,7 +63,7 @@ while ($row=$result->fetch_array()){
     else{
         $formattedOfferedPrice = number_format($row["OfferedPrice"],2);
         echo "Price: <del><span>S$ $formattedPrice</del></span>
-        <span style='font-weight:bold; font-size:15px; color:red;'>S$ $formattedOfferedPrice </span>";
+        <span style='font-weight:bold; font-size:20px; color:red;'>S$ $formattedOfferedPrice </span>";
         $_SESSION["offerPrice"] = $row["OfferedPrice"];
     }
     
@@ -84,13 +83,12 @@ if($row[0] > 0){
         echo "<input type='hidden' name='product_id' value='$pid' />";
         echo "Quantity: <input type='number' name='quantity' value='1'
                 min='1' max='10' style='width:40px' required />";
-        echo "<button type='submit'>Add to Cart</button>";
+        echo "<button type='submit' style='background-color: #E0C5C5; color: #2F1D1D;'>Add to Cart</button>";
         echo "</form>";
 }
 else{
         echo "<br/><span style='font-weight:bold; color:red; font-size:20px;'>Out of Stock";
 }
-
 echo "</div>"; //End of right column
 echo "</div>"; //End of row
 
