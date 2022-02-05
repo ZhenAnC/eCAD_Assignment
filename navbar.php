@@ -12,7 +12,9 @@ $content2 = "<li class='nav-item'>
 if(isset($_SESSION["ShopperName"])) { 
     //Display a greeting message after shopper has logged in.
     $content1 = "Welcome <b>$_SESSION[ShopperName]</b>";
-	
+	$content2 = "<li class='nav-item'>
+                 <a class='nav-link' href='logout.php'>Logout</a></li>";
+
     //Display number of item in cart
 	if (isset($_SESSION["NumCartItem"])) {
         $content1 .= ", $_SESSION[NumCartItem] item(s) in shopping cart";
