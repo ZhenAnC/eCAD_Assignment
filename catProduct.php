@@ -19,7 +19,7 @@ include_once("mysql_conn.php");
 // To Do:  Starting ....
 $cid=$_GET["cid"]; //Read Category ID from query string
 //Form SQL to retrieve list of products associated to the Category ID
-$qry="SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity, p.Offered
+$qry="SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity, p.Offered, p.OfferedPrice
 		FROM CatProduct cp INNER JOIN product p ON cp.ProductID=p.ProductID
 		WHERE cp.CategoryID=?
 		ORDER BY p.ProductTitle ASC";
@@ -39,15 +39,14 @@ while ($row=$result->fetch_array()){
 	echo "<div class='col-8'>"; //67% of row width
 	echo "<p><a href=$product>$row[ProductTitle]</a></p>";
 	$formattedPrice=number_format($row["Price"],2);
-	
+	$formattedOfferedPrice = number_format($row["OfferedPrice"],2);
 	if("$row[Offered]" == "0"){
 		echo "Price:<span style='font-weight: bold; color: red;'>
 		S$ $formattedPrice</span>";
 	}
 	else{
-		echo "Original Price:<span style='font-weight: bold; color: red;'>
-		S$ $formattedPrice</span>";
-		echo "<br/><span style='font-weight:bold; color:red; font-size:20px;'>On Offer";
+		echo "Price:<del><span> S$ $formattedPrice</span></del>";
+		echo "<span style='font-weight:bold; font-size:20px; color:red;'> NOW S$ $formattedOfferedPrice !!</span>";
 	}
 	echo "</div>";
 	

@@ -40,6 +40,7 @@ while ($row=$result->fetch_array()){
     echo "</div>";
 
     echo "</div>"; //End of a row
+    echo "<br/>";
 }
 // To Do:  Ending ....
 
