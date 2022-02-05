@@ -17,10 +17,10 @@ include("header.php");
 			<h1>Create Account</h1>
             <br />
 
-			<span>use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<span>Use your email for registration</span>
+			<input type="text" placeholder="Name" required/>
+			<input type="email" placeholder="Email" required/>
+			<input type="password" placeholder="Password" required/>
 			<button>Sign Up</button>
 		</form>
 	</div>
