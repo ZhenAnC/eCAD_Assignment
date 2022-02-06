@@ -46,7 +46,7 @@ while ($row = $result->fetch_array()) {
         <label class="col-sm-3 col-form-label" for="address">Address:</label>
         <div class="col-sm-9">
             <textarea class="form-control" name="address"
-                      cols="25" rows="4" value=<?php echo $address ?> ></textarea>
+                      cols="25" rows="4"><?php echo $address ?></textarea>
         </div>
     </div>
     <div class="form-group row">

@@ -56,6 +56,9 @@ if(isset($_SESSION["ShopperName"])) {
                 <a class="nav-link" href="search.php">Product Search</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="ranking.php">Product Rank</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="shoppingCart.php">Shopping Cart</a>
             </li>
         </ul>
