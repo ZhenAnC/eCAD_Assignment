@@ -14,7 +14,7 @@ include_once("mysql_conn.php");
 // Define UPDATE SQL statement
 $qry = "UPDATE shopper
         SET Name='$name', Address='$address', Country='$country',
-        Phone='$phone', Email='$email', Password='$password'
+        Phone='$phone', Email='$email'
         WHERE ShopperID='$_SESSION[ShopperID]'";
 $stmt = $conn->prepare($qry);
 
