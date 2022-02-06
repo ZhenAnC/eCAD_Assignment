@@ -7,6 +7,8 @@
 //when shopper has yet to login,
 $content1 = "Welcome Guest<br />";
 $content2 = "<li class='nav-item'>
+             <a class='nav-link' href='register.php'>Sign Up</a></li>
+             <li class='nav-item'>
 		     <a class='nav-link' href='login.php'>Login</a></li>";
 
 if(isset($_SESSION["ShopperName"])) { 

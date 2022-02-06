@@ -45,11 +45,11 @@ if (isset($_POST["eMail"])) {
 		$shopperId = $row["ShopperID"];
 		$new_pwd = "password"; // Default password
 		// Hash the default password
-		$hashed_pwd = password_hash($new_pwd, PASSWORD_DEFAULT);
+		//$hashed_pwd = password_hash($new_pwd, PASSWORD_DEFAULT);
 		$qry = "UPDATE Shopper SET Password=? WHERE ShopperID=?";
 		$stmt = $conn->prepare($qry);
 		// "s" - string, "i" - integer
-		$stmt->bind_param("si", $hashed_pwd, $shopperId);
+		$stmt->bind_param("si", $new_pwd, $shopperId);
 		$stmt->execute();
 		//$stmt->close();
 		// End of To Do 1
