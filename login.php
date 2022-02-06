@@ -59,7 +59,7 @@ function validateForm()
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Log into your member account and start shopping with us for delicious donuts!</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+				<!-- <button class="ghost" id="signUp">Sign Up</button> -->
 			</div>
 		</div>
 	</div>
