@@ -93,54 +93,54 @@ if (isset($_SESSION["Cart"])) {
 				Subtotal = S$". number_format($subTotal, 2);
 		$_SESSION["SubTotal"] = round($subTotal, 2);
 		
-		echo"<container style='text-align:right; align-content:flex-start; padding-right:50px'>";
+
+
+		// Add PayPal Checkout button on the shopping cart page
+		echo "<form style='text-align:right' method='post' action='checkoutProcess.php'>";
 		echo"</br>";
 		echo"<text style='font-size:20px;'>Choose delivery type<text>";
 		echo"</br>";
-		echo"<input type='radio' name='Delivery' id='delivery_normal' value='2' checked /> ";
+		echo"<input type='radio' name='Delivery' id='delivery_normal' onClick='handleClick(this);' value='2' checked /> ";
 		echo"<label for='delivery_normal' style='text-align:left; font-size:15px; margin-left: 5px; margin-bottom: -200px;'><strong>$2</strong> (Normal delivery within 1 day) </label> ";
 		echo"</br>";
-		echo"<input type='radio' name='Delivery' id='delivery_express' value='5' />";
+		echo"<input type='radio' name='Delivery' id='delivery_express' onClick='handleClick(this);' value='5' />";
 		echo"<label for='delivery_express' style='font-size:15px; margin-left: 5px; '> <strong>$5</strong> (Express delivery within 2 hours) </label>";
+		echo"</br>";
+		echo "<input type='image' style='float:right;'
+		src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'>";
+		echo"</container>";	
 		if (!empty($_GET['Delivery'])){ 
 			$shipping = $_GET['Delivery'];
 		}
 		else{ $shipping = '2';}
 		echo"</br>";
-		// if ($shipping == 2)
-		// {
-		// 	$subTotal+=2;
-		// }
-		// else
-		// {
-		// 	$subTotal+=5;
-		// }
-		//echo"$subTotal";
-		//echo "<p style='text-align:right;padding-right:50px; font-size:20px'>
-		//Subtotal=S$ ". number_format($subTotal,2); echo "</p>";
-		// Add PayPal Checkout button on the shopping cart page
-		echo "<form method='post' action='checkoutProcess.php'>";
-		echo "<input type='image' style='float:right; padding-right:50px; '
-		src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'>";
-		echo"</container>";	
-		
+
 		
 		#echo"<span class='r-text'>Total Price=S$ ". number_format($subTotal,2) ," +S$$shipping(shipping) = S$ ".number_format($subTotal,2) + $shipping , "</span>";
 		#echo "<p style='text-align:right; padding-right:50px; padding-top: -150px; font-size:20px'>;
 		echo"</br>";
 		echo"</br>";
-		
 		echo"<script>
-			$('input[type=radio]').click(function(e) {//jQuery works on clicking radio box
+				var currentValue = <?php echo json_encode($_SESSION[SubTotal]) ?>;
+
+				function handleClick(myRadio) {
+				alert('Old value: ' + currentValue);
+				alert('New value: ' + myRadio.value);
+				currentValue = myRadio.value;
+			}
+		</script>";
+		
+
+		// 	$('input[type=radio]').click(function(e) {//jQuery works on clicking radio box
 				
-				var value = $(this).val(); //Get the clicked checkbox value
+		// 		var value = $(this).val(); //Get the clicked checkbox value
 				
-				var name= '<?php echo $_SESSION[SubTotal];?>'
-				value = parseFloat(value)+name
-				$('.r-text').html(value);
-			});
-		</script>
-		";
+		// 		var name= '<?php echo $_SESSION[SubTotal];
+		// 		value = parseFloat(value)+name
+		// 		$('.r-text').html(value);
+		// 	
+	
+
 		echo"</br>";
 		echo"</br>";
 		echo "</form>";	

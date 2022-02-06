@@ -8,32 +8,32 @@ if($_POST) //Post Data received from Shopping cart page.
 {
 	// To Do 6 (DIY): Check to ensure each product item saved in the associative
 	//                array is not out of stock
-	// foreach($_SESSION['Items'] as $key=>$item){
-	// 	$qry = "SELECT * FROM shopcartitem WHERE ShopCartID =?";
-	// 	$stmt = $conn->prepare($qry);
-	// 	$stmt->bind_param("i",$_SESSION["Cart"]);
-	// 	$stmt->execute();
-		
-	// 	$result = $stmt->get_result();
-	// 	while ($row = $result->fetch_array())
-	// 	{
-	// 		$qry_1 = "SELECT Quantity FROM product WHERE productID =?";
-	// 		$stmt = $conn->prepare($qry_1);
-	// 		$stmt->bind_param("i",$_SESSION["Cart"]);
-	// 		$stmt->execute();
-	// 		$stmt-> close();
-	// 		$result_1 = $conn->query($qry_1);
-	// 		$row_1 = $result_1->fetch_array();
-	// 		if ($row_1["Quantity"] < $row_1["Quantity"]) {
-	// 			echo "Product $item[productId] : $item[name] is out of stock!<br />";
-	// 			echo "Please return to shopping cart to amend your purchase. <br />";
-	// 			include("footer.php");
-	// 			exit;
-	// 		}
-	// 	}
-		
-
-	// }
+	$qry = "SELECT Quantity FROM Product WHERE ProductID = ?";
+	$stmt = $conn->prepare($qry);
+	$outOfStock = FALSE;
+	foreach($_SESSION['Items'] as $key=>$item){
+		$pid = $item["productId"];
+		$pname = $item["name"];
+		$qtyPurchased = $item["quantity"];
+		$stmt->bind_param("i", $pid);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($row = $result->fetch_array()){
+			if($qtyPurchased > $row["Quantity"]){
+				//product out of stock
+				$outOfStock = TRUE;
+				echo "Product $pid : $pname is out of stock!<br/>";
+			}
+		}
+	}
+	$stmt->close();
+	if ($outOfStock){
+		echo "Please return to shopping cart to amend your purchase.<br/>";
+		include("footer.php");
+		$conn->close();
+		exit;
+	}
+	// End of To Do 6
 	
 	
 	// End of To Do 6
@@ -49,7 +49,15 @@ if($_POST) //Post Data received from Shopping cart page.
 	}
 	
 	// To Do 1A: Compute GST amount 7% for Singapore, round the figure to 2 decimal places
-	$_SESSION["Tax"] = round($_SESSION["SubTotal"]*0.07,2);
+	$qry = "SELECT * FROM gst where (YEAR(now()) - YEAR(EffectiveDate)) = 15";
+	$result=$conn->query($qry);
+
+	while ($row=$result->fetch_array())
+	{
+		$tax_amt = $row['TaxRate']/100;
+	}
+	$conn->close();
+	$_SESSION["Tax"] = round($_SESSION["SubTotal"]*$tax_amt,2);
 	
 	
 	// To Do 1B: Compute Shipping charge - S$2.00 per trip
@@ -59,16 +67,17 @@ if($_POST) //Post Data received from Shopping cart page.
 		
 		$radioval = $_POST['Delivery'];
 		if ($radioval == "2")
-		{
-
-			if($_SESSION["SubTotal"] > 50)
-			{
-				$_SESSION["ShipCharge"] = 0;
-			}
-			else
+		{	
+			if ($_SESSION["SubTotal"] <= 50)
 			{
 				$_SESSION["ShipCharge"] = 2.00;
 			}
+			else
+			{
+				$_SESSION["ShipCharge"] = 0;
+			}
+			
+			
 			
 		}
 		else
@@ -170,6 +179,15 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 	{
 		// To Do 5 (DIY): Update stock inventory in product table 
 		//                after successful checkout
+		foreach($_SESSION["Items"] as $key=>$item){
+			$pid = $item["productId"];
+			$qtyPurchase = $item["quantity"];
+			$qry = "UPDATE Product SET Quantity = Quantity - ? WHERE ProductID = ?";
+			$stmt = $conn->prepare($qry);
+			$stmt->bind_param("ii",$qtyPurchase,$pid);
+			$stmt->execute();
+			$stmt->close();
+		}
 		// $qry = "UPDATE Product 
 		// SET Quantity = Quantity -1
 		// WHERE ProductID = ?";
