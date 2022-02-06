@@ -31,7 +31,7 @@ while ($row=$result->fetch_array()){
     echo "<div class='row'>";
     $img="./Images/products/$row[ProductImage]";
     echo "<div class='col-sm-3' style='padding:5px; display: block;'>";
-    echo "<span><img src=$img /></span>";
+    echo "<span><img src=$img / class='img-fluid'></span>";
     echo "</div>";
 
     //right column - display the product's description
@@ -55,7 +55,7 @@ while ($row=$result->fetch_array()){
     //Right column - display the product's price
     $formattedPrice = number_format($row["Price"],2);
     
-    if("$row[OfferedPrice]" == NULL){
+    if("$row[OfferedPrice]" == NULL){ //if product has no offered price (it is not on offer)
         echo "Price:<span style='font-weight:bold; color:red;'>
             S$ $formattedPrice</span>";
         $_SESSION["offerPrice"] = NULL;
@@ -76,7 +76,7 @@ $stmt->execute();
 $result3 = $stmt->get_result();
 $stmt->close();
 $row = $result3->fetch_row();
-if($row[0] > 0){
+if($row[0] > 0){ //if product is in stock, show 'Add to Cart' button
         // Create a Form for adding the product to shopping cart. Starting ....
         echo "<form action='cartFunctions.php' method='post'>";
         echo "<input type='hidden' name='action' value='add' />";
