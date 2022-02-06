@@ -50,22 +50,6 @@ if (! isset($_SESSION["ShopperID"])) { // Check if user logged in
                    type="email" required /> (required)
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label" for="password">
-            Password:</label>
-        <div class="col-sm-9">
-            <input class="form-control" name="password" 
-                   type="password" required /> (required)
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label" for="password2">
-            Retype Password:</label>
-        <div class="col-sm-9">
-            <input class="form-control" name="password2" id="password2" 
-                   type="password" required /> (required)
-        </div>
-    </div>
     <div class="form-group row">       
         <div class="col-sm-9 offset-sm-3">
             <button type="submit">Save</button>

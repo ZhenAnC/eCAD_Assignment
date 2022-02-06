@@ -45,7 +45,7 @@ function validateForm()
 			<span>Login with your registered email</span>
 			<input type="email" name="email" id="email" placeholder="Email" required />
 			<input type="password" name="password" id="password" placeholder="Password" required />
-			<a href="#">Forgot your password?</a>
+			<a href="forgetPassword.php">Forgot your password?</a>
 			<button>Sign In</button>
 		</form>
 	</div>

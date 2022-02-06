@@ -7,7 +7,6 @@ $address = $_POST["address"];
 $country = $_POST["country"];
 $phone = $_POST["phone"];
 $email = $_POST["email"];
-$password = $_POST["password"];
 
 // Include PHP file that establishes database connection handle: $conn
 include_once("mysql_conn.php");
