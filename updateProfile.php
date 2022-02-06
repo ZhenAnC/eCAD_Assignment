@@ -21,7 +21,6 @@ $stmt = $conn->prepare($qry);
 if ($stmt->execute()) { // SQL statement executed successfully
     // Successful message
     $message = "Update successful!";
-    header("Location: profile.php");
 }
 else {
     $message = "<h3 style='color:red'>Error in updating profile.</h3>";

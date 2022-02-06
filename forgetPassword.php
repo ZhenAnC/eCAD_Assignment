@@ -58,6 +58,7 @@ if (isset($_POST["eMail"])) {
 	$conn->close();
 }
 ?>
+
 <?php 
 include("footer.php"); // Include the Page Layout footer
 ?>

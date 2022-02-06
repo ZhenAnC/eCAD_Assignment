@@ -42,7 +42,7 @@ function validateForm()
         <label class="col-sm-3 col-form-label" for="name">Name:</label>
         <div class="col-sm-9">
             <input class="form-control" name="name" id="name" 
-                   type="text" required /> (required)
+                   type="text" required /> (Required)
         </div>
     </div>
     <div class="form-group row">
@@ -76,7 +76,7 @@ function validateForm()
             Email Address:</label>
         <div class="col-sm-9">
             <input class="form-control" name="email" id="email" 
-                   type="email" required /> (required)
+                   type="email" required /> (Required)
         </div>
     </div>
     <div class="form-group row">
@@ -84,7 +84,7 @@ function validateForm()
             Password:</label>
         <div class="col-sm-9">
             <input class="form-control" name="password" id="password" 
-                   type="password" required /> (required)
+                   type="password" required /> (Required)
         </div>
     </div>
     <div class="form-group row">
@@ -92,7 +92,7 @@ function validateForm()
             Retype Password:</label>
         <div class="col-sm-9">
             <input class="form-control" name="password2" id="password2" 
-                   type="password" required /> (required)
+                   type="password" required /> (Required)
         </div>
     </div>
     <div class="form-group row">
@@ -105,14 +105,14 @@ function validateForm()
                 <option>What is the name of your first school?</option>
                 <option>In what city were you born?</option>
                 <option>What is your mother's maiden name?</option>
-            </select> (required)
+            </select> (Required) You are not allowed to change your question once submitted.
         </div>
     </div><div class="form-group row">
         <label class="col-sm-3 col-form-label" for="answer">
             Security Answer:</label>
         <div class="col-sm-9">
         <input class="form-control" name="answer" id="answer"
-               type="text" required/> (required)
+               type="text" required/> (Required) You are not allowed to change your answer once submitted.
         </div>
     </div>
     <div class="form-group row">       
