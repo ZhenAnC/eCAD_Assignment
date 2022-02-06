@@ -92,13 +92,20 @@ if (isset($_SESSION["Cart"])) {
 		echo "<p style='text-align:right; font-size:20px'>
 				Subtotal = S$". number_format($subTotal, 2);
 		$_SESSION["SubTotal"] = round($subTotal, 2);
-		
 
+		
+		if ($_SESSION["SubTotal"] > 50.00) {
+			echo"</br>";
+			echo"<text style='font-size:17px;'>Your delivery is free if you choose normal delivery as you have spent more than $50.<text>";
+		}
+		else {
+			echo"</br>";
+			echo"<text style='font-size:17px;'>Spend more than S$50 for free normal delivery. You are not eligible yet.<text>";
+		}
 
 		// Add PayPal Checkout button on the shopping cart page
 		echo "<form style='text-align:right' method='post' action='checkoutProcess.php'>";
-		echo"</br>";
-		echo"<text style='font-size:20px;'>Choose delivery type<text>";
+		echo"<text style='font-size:20px;'>Choose delivery type:<text>";
 		echo"</br>";
 		echo"<input type='radio' name='Delivery' id='delivery_normal' onClick='handleClick(this);' value='2' checked /> ";
 		echo"<label for='delivery_normal' style='text-align:left; font-size:15px; margin-left: 5px; margin-bottom: -200px;'><strong>$2</strong> (Normal delivery within 1 day) </label> ";
