@@ -40,13 +40,14 @@ while ($row=$result->fetch_array()){
 	echo "<p><a href=$product>$row[ProductTitle]</a></p>";
 	$formattedPrice=number_format($row["Price"],2);
 	$formattedOfferedPrice = number_format($row["OfferedPrice"],2);
-	if("$row[Offered]" == "0"){
+
+	if("$row[Offered]" == "0"){ //if product is not on offer
 		echo "Price:<span style='font-weight: bold; color: red;'>
-		S$ $formattedPrice</span>";
+		S$ $formattedPrice</span>"; //display price
 	}
 	else{
-		echo "Price:<del><span> S$ $formattedPrice</span></del>";
-		echo "<span style='font-weight:bold; font-size:20px; color:red;'> ON OFFER: S$ $formattedOfferedPrice </span>";
+		echo "Price:<del><span> S$ $formattedPrice</span></del>"; //strike off original price
+		echo "<span style='font-weight:bold; font-size:20px; color:red;'> ON OFFER: S$ $formattedOfferedPrice </span>"; //display offer price
 	}
 	echo "</div>";
 	
