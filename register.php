@@ -46,6 +46,13 @@ function validateForm()
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="birthdate">Birth Date:</label>
+        <div class="col-sm-9">
+            <input class="form-control" name="birthdate" id="birthdate" 
+                   type="date" />
+        </div>
+    </div>
+    <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="address">Address:</label>
         <div class="col-sm-9">
             <textarea class="form-control" name="address" id="address"
