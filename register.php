@@ -7,15 +7,14 @@ include("header.php");
 <script type="text/javascript">
 function validateForm()
 {
-    // To Do 1 - Check if password matched
+    // Check if passwords match
     if (document.register.password.value != document.register.password2.value){
         alert("Passwords not matched!");
         return false; // cancel submission
     }
 	
-	// To Do 2 - Check if telephone number entered correctly
-	//           Singapore telephone number consists of 8 digits,
-	//           start with 6, 8 or 9
+	// Check if telephone number entered correctly
+	// Singapore telephone number consists of 8 digits, start with 6/8/9
     if (document.register.phone.value != ""){
         var str = document.register.phone.value;
         if (str.length != 8){
@@ -104,13 +103,13 @@ function validateForm()
         <label class="col-sm-3 col-form-label" for="answer">
             Security Answer:</label>
         <div class="col-sm-9">
-        <input class="form-control" name="country" id="country"
+        <input class="form-control" name="answer" id="answer"
                type="text" required/> (required)
         </div>
     </div>
     <div class="form-group row">       
         <div class="col-sm-9 offset-sm-3">
-            <button type="submit">Sign up</button>
+            <button type="submit">Submit</button>
         </div>
     </div>
 </form>
