@@ -14,7 +14,7 @@ $content2 = "<li class='nav-item'>
 if(isset($_SESSION["ShopperName"])) { 
     //Display a greeting message after shopper has logged in.
     $content1 = "Welcome <b>$_SESSION[ShopperName]</b>";
-	$content2 = "<li class='nav-item>
+	$content2 = "<li class='nav-item'>
                  <a class='nav-link' href='profile.php'>Profile</a></li>
                  <li class='nav-item'>
                  <a class='nav-link' href='logout.php'>Logout</a></li>";

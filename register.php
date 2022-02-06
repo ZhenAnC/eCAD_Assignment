@@ -93,6 +93,7 @@ function validateForm()
             Security Question:</label>
         <div class="col-sm-9">
             <select class="form-control" name="security" id="security" required>
+                <option disabled selected hidden>Select a security question</option>
                 <option>What is the name of your first pet?</option>
                 <option>What is the name of your first school?</option>
                 <option>In what city were you born?</option>

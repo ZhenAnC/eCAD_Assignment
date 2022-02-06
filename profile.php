@@ -13,33 +13,65 @@ if (! isset($_SESSION["ShopperID"])) { // Check if user logged in
 // Include the PHP file that establishes database connection handle: $conn
 include_once("mysql_conn.php");
 
-$sid = $_GET["sid"] // Read ShopperID from query string
-$qry = "SELECT * FROM shopper WHERE ShopperID = '$_SESSION["ShopperID"]'";
+$shopperID = $_SESSION["ShopperID"];
+$qry = "SELECT * FROM shopper WHERE ShopperID=$shopperID";
 $stmt = $conn->prepare($qry);
-$stmt->bind_param("i", $sid); // "i" - integer
 $stmt->execute();
 $result = $stmt->get_result();
-$stmt->close();
 
 while ($row = $result->fetch_array()) {
-    $name = $result["Name"];
-    $address = $result["Address"];
-    $country = $result["Country"];
-    $phone = $result["Phone"];
-    $email = $result["Email"];
+    $name = $row["Name"];
+    $address = $row["Address"];
+    $country = $row["Country"];
+    $phone = $row["Phone"];
+    $email = $row["Email"];
 }
 ?>
 
 <div style="width:80%; margin:auto;">
-    <h1>Profile</h1>
-    <p>Name: <?php echo $name; ?></p>;
-    <p>Address: <?php echo $address; ?></p>;
-    <p>Name: <?php echo $country; ?></p>;
-    <p>Name: <?php echo $phone; ?></p>;
-    <p>Name: <?php echo $email; ?></p>;
-    <form name="edit" action="editProfileForm.php" method="post">
-        <button>Edit profile</button>
-    </form>
+<form name="editProfile" action="editProfileForm.php" method="post">
+    <div class="form-group row">
+        <div class="col-sm-9 offset-sm-3">
+            <span class="page-title">Profile</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="name">Name:</label>
+        <div class="col-sm-9">
+            <span><?php echo $name; ?></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="address">Address:</label>
+        <div class="col-sm-9">
+            <span><?php echo $address; ?></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="country">Country:</label>
+        <div class="col-sm-9">
+            <span><?php echo $country; ?></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="phone">Phone:</label>
+        <div class="col-sm-9">
+            <span><?php echo $phone; ?></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="email">
+            Email Address:</label>
+        <div class="col-sm-9">
+            <span><?php echo $email; ?></span>
+        </div>
+    </div>
+    <div class="form-group row">       
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit">Edit</button>
+        </div>
+    </div>
+</form>
 </div>
 
 <?php
@@ -48,10 +80,6 @@ $stmt->close();
 // Close database connection
 $conn->close();
 
-// Display Page Layout header with updated session state and links
-include("header.php");
-// Display message
-echo $message;
 // Display Page Layout footer
 include("footer.php");
 ?>
