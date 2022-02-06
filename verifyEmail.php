@@ -79,18 +79,19 @@ if (isset($_POST["pwdQns"])) {
 	$result = $stmt->get_result();
 	$stmt->close();
 	if ($result->num_rows > 0) {
+		// Update the new default password to shopper's account
         $row = $result-> fetch_array();
 		$shopperId = $row["ShopperID"];
-		$new_pwd = "ecader";
+		$new_pwd = "ecader"; // Default password
         //hash default password
 		$qry = "UPDATE Shopper SET Password=? WHERE ShopperID=?";
 		$stmt = $conn->prepare($qry);
 		$stmt->bind_param("si",$new_pwd,$shopperId);
 		$stmt->execute();
 		$stmt->close();
-        echo"Your new password is now ", "<strong>",$new_pwd,"</strong>";
+        echo"Your new password is ", "<strong>",$new_pwd,"</strong>";
         echo"</br>";
-        echo"Please login and reset your password!";
+        echo"This is a default password. Please login and reset your password!";
 		
 	}
 	else {
