@@ -30,7 +30,7 @@ while ($row = $result->fetch_array()) {
 
 <form name="update" action="updateProfile.php" method="post"
       onsubmit="return validateForm()">
-    <div class="form-group row">
+    <div class="form-group row offset-sm-3">
         <div class="col-sm-9">
             <span class="page-title">Update Profile</span>
         </div>

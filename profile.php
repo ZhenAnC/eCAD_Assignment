@@ -30,7 +30,7 @@ while ($row = $result->fetch_array()) {
 
 <div style="width:80%; margin:auto;">
 <form name="editProfile" action="editProfileForm.php" method="post">
-    <div class="form-group row">
+    <div class="form-group row offset-sm-3">
         <div class="col-sm-9">
             <span class="page-title">Profile</span>
         </div>
