@@ -59,6 +59,8 @@ if (isset($_POST["eMail"])) {
 }
 ?>
 
+
+</div> <!-- Closing container -->
 <?php 
 include("footer.php"); // Include the Page Layout footer
 ?>

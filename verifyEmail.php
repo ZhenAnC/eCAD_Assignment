@@ -101,3 +101,9 @@ if (isset($_POST["pwdQns"])) {
 	$conn->close();
 }
 ?>
+
+
+</div> <!-- Closing container -->
+<?php 
+include("footer.php"); // Include the Page Layout footer
+?>
