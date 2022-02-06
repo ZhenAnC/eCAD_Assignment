@@ -108,6 +108,9 @@ if (isset($_SESSION["Cart"])) {
 		echo"</br>";
 		echo "<input type='image' style='float:right;'
 		src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'>";
+		echo"</br>";
+		echo"</br>";
+		echo"<strong>*Total price will be updated in checkout</strong>";
 		echo"</container>";	
 		if (!empty($_GET['Delivery'])){ 
 			$shipping = $_GET['Delivery'];
