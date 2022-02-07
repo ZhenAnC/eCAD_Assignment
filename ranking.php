@@ -27,7 +27,7 @@ include_once("mysql_conn.php"); // Establish database connection handle: $conn
 			</div>
 		</div>
 		<div class='form-group-row'>
-			<select name='product' class='form-control'>
+			<select name='product' class='form-control' required>
 				<option disabled selected hidden>Choose a product</option>
 				<?php
 				$qry = "SELECT * FROM Product";
@@ -42,7 +42,7 @@ include_once("mysql_conn.php"); // Establish database connection handle: $conn
 			<label class='col-form-label' for='rank'>Give it a rank:</label>
 		</div>
 		<div class='form-group-row'>
-			<select name='rank' class='form-control'>
+			<select name='rank' class='form-control' required>
 				<option disabled selected hidden>Choose a rank</option>
 				<option>1 (Worst)</option>
 				<option>2</option>
@@ -52,7 +52,7 @@ include_once("mysql_conn.php"); // Establish database connection handle: $conn
 			</select>
 		</div>
 		<div class='col-sm-9'>
-			<label class='col-form-label' for='comment'>Comments:</label>
+			<label class='col-form-label' for='comment' required>Comments:</label>
 		</div>
 		<div>
 			<textarea class="form-control" name="comment"
